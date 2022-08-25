@@ -1,0 +1,9 @@
+.cancleBtn{
+    border-color: black;
+}
+.btn{
+    width: 140px;
+}
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

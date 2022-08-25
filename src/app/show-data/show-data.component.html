@@ -1,0 +1,167 @@
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row let i = index;">{{i+1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="locationId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locationId </th>
+      <td mat-cell *matCellDef="let row"> {{row.locationId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="locationDisplayName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locationDisplayName </th>
+      <td mat-cell *matCellDef="let row"> {{row.locationDisplayName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="streetAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> streetAddress </th>
+      <td mat-cell *matCellDef="let row"> {{row.streetAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cityAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> cityAddress </th>
+      <td mat-cell *matCellDef="let row"> {{row.cityAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stateAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> stateAddress </th>
+      <td mat-cell *matCellDef="let row"> {{row.stateAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="countryAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> countryAddress </th>
+      <td mat-cell *matCellDef="let row"> {{row.countryAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="postalCodeAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> postalCodeAddress </th>
+      <td mat-cell *matCellDef="let row"> {{row.postalCodeAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="locatinContactTitle">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locatinContactTitle </th>
+      <td mat-cell *matCellDef="let row"> {{row.locatinContactTitle}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="locationContactName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locationContactName </th>
+      <td mat-cell *matCellDef="let row"> {{row.locationContactName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="country_code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> country_code </th>
+      <td mat-cell *matCellDef="let row"> {{row.country_code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="locationContactNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locationContactNumber </th>
+      <td mat-cell *matCellDef="let row"> {{row.locationContactNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="locationContactEmail">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> locationContactEmail </th>
+      <td mat-cell *matCellDef="let row"> {{row.locationContactEmail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button class="edit">
+          <mat-icon (click)="edit(row)">edit</mat-icon>
+        </button>
+        <button class="delete">
+          <mat-icon (click)="deleteData(row)">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+
+<!-- modal -->
+<div class="main">
+  <div class="container mt-5">
+    <form class="row mt-2" [formGroup]="Form" (ngSubmit)="update()">
+      <div class="col-md-6">
+        <div class="col-md-12 mt-4 inputProperty">
+          <input type="text" class="form-control" formControlName="locationId" placeholder="Location ID"
+            [readOnly]="true">
+        </div>
+        <div class="col-md-12 mt-4 inputProperty">
+          <input type="text" class="form-control" formControlName="locationDisplayName"
+            placeholder="Location Display Name">
+        </div>
+        <h6 class="mt-5">Address Details</h6>
+        <div class="col-md-12 inputProperty mt-3">
+          <input type="text" class="form-control" name="searchAddress" placeholder="Search Address...">
+        </div>
+        <div class="row">
+          <div class="col-md-6 mt-5 inputProperty">
+            <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street">
+          </div>
+          <div class="col-md-6 mt-5 inputProperty">
+            <input type="text" class="form-control" formControlName="cityAddress" placeholder="City">
+          </div>
+          <div class="col-md-6 mt-5 inputProperty">
+            <input type="text" class="form-control" formControlName="stateAddress" placeholder="State">
+          </div>
+          <div class="col-md-6 mt-5 inputProperty">
+            <input type="text" class="form-control" formControlName="countryAddress" placeholder="Country">
+          </div>
+        </div>
+        <div class="col-md-12 mt-5 inputProperty">
+          <input type="text" class="form-control" formControlName="postalCodeAddress" placeholder="Postal Code">
+        </div>
+        <div class="row">
+          <div class="col-md-4 mt-5 ">
+            <button type="submit" type="reset" class="btn cancleBtn mr-5 ">Cancel</button>
+          </div>
+          <div class="col-md-3 mt-5">
+            <button type="submit" class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12 mt-4 inputProperty">
+          <input type="text" class="form-control" formControlName="locatinContactTitle"
+            placeholder="Location Contact Title">
+        </div>
+        <div class="col-md-12 mt-4 inputProperty">
+          <input type="text" class="form-control" formControlName="locationContactName"
+            placeholder="Location Contact Name">
+        </div>
+        <div class="input-group  mt-4 inputProperty ">
+          <select class="dropdown-item form-select " style="border: black 1px solid;" formControlName="country_code">
+            <option selected value="" disabled>+1 (USA)</option>
+            <option value="+86(China)">China</option>
+            <option value="+20(Egypt)">Egypt</option>
+            <option value="+33(France)">France</option>
+            <option value="+49(Germany)">Germany</option>
+            <option value="+91(India)">India</option>
+            <option value="+92(Pakistan)">Pakistan</option>
+            <option value="+44(UK)">UK</option>
+            <option value="+1(USA)">USA</option>
+          </select>
+          <input type="number" class="form-control" aria-label="Text input with dropdown button"
+            formControlName="locationContactNumber" placeholder="Location Contact Number">
+        </div>
+        <div class="col-md-12 mt-4 inputProperty">
+          <input type="text" class="form-control" formControlName="locationContactEmail"
+            placeholder="Location Contact Email">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

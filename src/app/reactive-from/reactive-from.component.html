@@ -1,0 +1,144 @@
+<div class="main">
+    <div class="container mt-5">
+        <form class="row mt-2" [formGroup]="reactiveForm" (ngSubmit)="onSubmit(reactiveForm.value)">
+            <div class="col-md-6">
+                <div class="col-md-12 mt-4 inputProperty">
+                    <input type="text" class="form-control " formControlName="locationId" placeholder="Location ID"
+                        [ngClass]="{ 'is-invalid': submitted && f.locationId.errors }">
+                    <span *ngIf="(!f.locationId.valid && f.locationId.touched && !f.locationId.errors?.pattern)"
+                        style="color: red;">Location ID is
+                        required</span>
+                    <div *ngIf="f.locationId.errors?.pattern" style="color: red;">Only 5 numbers allow </div>
+                </div>
+                <div class="col-md-12 mt-4 inputProperty">
+                    <input type="text" class="form-control" formControlName="locationDisplayName"
+                        placeholder="Location Display Name"
+                        [ngClass]="{ 'is-invalid': submitted && f.locationDisplayName.errors }">
+                    <span
+                        *ngIf="(!f.locationDisplayName.valid && f.locationDisplayName.touched && !f.locationDisplayName.errors?.pattern) "
+                        style="color: red;">Location Display name is required</span>
+                    <div *ngIf="f.locationDisplayName.errors?.pattern " style="color: red;">Only alphabet allow</div>
+
+                </div>
+                <h6 class="mt-5">Address Details</h6>
+                <div class="col-md-12 inputProperty mt-3">
+                    <input type="text" class="form-control" name="searchAddress" placeholder="Search Address...">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5 inputProperty">
+                        <input type="text" class="form-control" formControlName="streetAddress" placeholder="Street"
+                            [ngClass]="{ 'is-invalid': submitted && f.streetAddress.errors }">
+                        <span
+                            *ngIf="(!f.streetAddress.valid && f.streetAddress.touched && !f.streetAddress.errors?.pattern) "
+                            style="color: red;">Street is
+                            required</span>
+                        <div *ngIf="f.streetAddress.errors?.pattern" style="color: red;">Only alphabet allow</div>
+
+                    </div>
+                    <div class="col-md-6 mt-5 inputProperty">
+                        <input type="text" class="form-control" formControlName="cityAddress" placeholder="City"
+                            [ngClass]="{ 'is-invalid': submitted && f.cityAddress.errors}">
+                        <span *ngIf="(!f.cityAddress.valid && f.cityAddress.touched && !f.cityAddress.errors?.pattern) "
+                            style="color: red;">City is
+                            required</span>
+                        <div *ngIf="f.cityAddress.errors?.pattern" style="color: red;">Only alphabet allow</div>
+
+                    </div>
+                    <div class="col-md-6 mt-5 inputProperty">
+                        <input type="text" class="form-control" formControlName="stateAddress" placeholder="State"
+                            [ngClass]="{ 'is-invalid': submitted && f.stateAddress.errors }">
+                        <span
+                            *ngIf="(!f.stateAddress.valid && f.stateAddress.touched && !f.stateAddress.errors?.pattern) "
+                            style="color: red;">State is
+                            required</span>
+                        <div *ngIf="f.stateAddress.errors?.pattern" style="color: red;">Only alphabet allow</div>
+
+                    </div>
+                    <div class="col-md-6 mt-5 inputProperty">
+                        <input type="text" class="form-control" formControlName="countryAddress" placeholder="Country"
+                            [ngClass]="{ 'is-invalid': submitted && f.countryAddress.errors }">
+                        <span
+                            *ngIf="(!f.countryAddress.valid && f.countryAddress.touched && !f.countryAddress.errors?.pattern)  "
+                            style="color: red;">Country is
+                            required</span>
+                        <div *ngIf="f.countryAddress.errors?.pattern" style="color: red;">Only alphabet allow</div>
+
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5 inputProperty">
+                    <input type="text" class="form-control" formControlName="postalCodeAddress"
+                        placeholder="Postal Code" [ngClass]="{ 'is-invalid': submitted && f.postalCodeAddress.errors}">
+                    <span
+                        *ngIf="(!f.postalCodeAddress.valid && f.postalCodeAddress.touched && !f.postalCodeAddress.errors?.pattern) "
+                        style="color: red;">Postal
+                        code is required</span>
+                    <div *ngIf="f.postalCodeAddress.errors?.pattern" style="color: red;"> only 6 numbers allow</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-5">
+                        <button type="submit" type="reset" class="btn cancleBtn mr-5 "
+                            (click)="onReset()">Cancel</button>
+                    </div>
+                    <div class="col-md-4 mt-5">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 mt-4 inputProperty">
+                    <input type="text" class="form-control" formControlName="locatinContactTitle"
+                        placeholder="Location Contact Title"
+                        [ngClass]="{ 'is-invalid': submitted && f.locatinContactTitle.errors}">
+                    <span
+                        *ngIf="(!f.locatinContactTitle.valid && f.locatinContactTitle.touched && !f.locatinContactTitle.errors?.pattern) "
+                        style="color: red;">Location Contact Title is required</span>
+                    <div *ngIf="f.locatinContactTitle.errors?.pattern" style="color: red;">Only alphabet allow</div>
+                </div>
+                <div class="col-md-12 mt-4 inputProperty">
+                    <input type="text" class="form-control" formControlName="locationContactName"
+                        placeholder="Location Contact Name"
+                        [ngClass]="{ 'is-invalid': submitted && f.locationContactName.errors }">
+                    <span
+                        *ngIf="(!f.locationContactName.valid && f.locationContactName.touched && !f.locationContactName.errors?.pattern) "
+                        style="color: red;">Location Contact name is required</span>
+
+                    <div *ngIf="f.locationContactName.errors?.pattern" style="color: red;">Only alphabet allow</div>
+                </div>
+
+                <div class="input-group  mt-4 inputProperty ">
+                    <select class="dropdown-item form-select " style="border: black 1px solid;"
+                        formControlName="country_code" [ngClass]="{'is-invalid': submitted && f.country_code.errors}">
+                        <option selected value="" disabled>+1 (USA)</option>
+                        <option value="+86(China)">China</option>
+                        <option value="+20(Egypt)">Egypt</option>
+                        <option value="+33(France)">France</option>
+                        <option value="+49(Germany)">Germany</option>
+                        <option value="+91(India)">India</option>
+                        <option value="+92(Pakistan)">Pakistan</option>
+                        <option value="+44(UK)">UK</option>
+                        <option value="+1(USA)">USA</option>
+                    </select>
+                    <input type="number" class="form-control" aria-label="Text input with dropdown button"
+                        formControlName="locationContactNumber" placeholder="Location Contact Number"
+                        [ngClass]="{ 'is-invalid': submitted && f.locationContactNumber.errors }">
+                </div>
+                <span
+                    *ngIf="(!f.locationContactNumber.valid && f.locationContactNumber.touched && !f.locationContactNumber.errors?.maximum && !f.locationContactNumber.errors?.pattern )"
+                    style="color: red;">Location Contact Number is required</span>
+                <div *ngIf="f.locationContactNumber.errors?.pattern" style="color: red;">Only 10 numeric value allow
+                </div>
+                <div *ngIf="f.locationContactNumber.errors?.maxLength">Please enter maximum 10 numbers</div>
+                <div class="col-md-12 mt-4 inputProperty">
+                    <input type="text" class="form-control" formControlName="locationContactEmail"
+                        placeholder="Location Contact Email"
+                        [ngClass]="{ 'is-invalid': submitted && f.locationContactEmail.errors }">
+                    <span
+                        *ngIf="(!f.locationContactEmail.valid && f.locationContactEmail.touched && !f.locationContactEmail.errors?.email )"
+                        style="color: red;">Location Contact Email is required</span>
+                    <div *ngIf="f.locationContactEmail.errors?.email" style="color: red;">
+                        Enter a valid email address</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

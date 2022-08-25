@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+.edit{
+  border: none;
+  color: blue;
+  margin:auto;
+}
+.delete{
+  border: none;
+  color: red;
+  /* margin-left:30px;
+  margin-top:-20px */
+}
